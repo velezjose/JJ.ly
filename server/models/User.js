@@ -21,10 +21,12 @@ const UserSchema = new mongoose.Schema({
   isDeleted: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 
+// bcrypt library generates user's hashed password
 UserSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-UserSchema.methods.validPassword = password => bcrypt.compareSync(password, this.password);
+// hashes password and returns if it === hashedPasswd
+UserSchema.methods.validPassword = (password, hashedPasswd) => bcrypt.compareSync(password, hashedPasswd);
 
 module.exports = mongoose.model('User', UserSchema);
