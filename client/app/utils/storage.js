@@ -1,3 +1,16 @@
+export function setInStorage(key, obj) {
+  if (!key) {
+    return console.error('Error: Key is missing.');
+  }
+
+  try {
+    localStorage.setItem(key, JSON.stringify(obj));
+  } catch (e) {
+    console.error(e);
+  }
+
+}
+
 export function getFromStorage(key) {
   if (!key) {
     return null;
@@ -15,17 +28,4 @@ export function getFromStorage(key) {
   } catch (e) {
     return null;
   }
-}
-
-export function setInStorage(key, obj) {
-  if (!key) {
-    console.error('Error: Key is missing.');
-  }
-
-  try {
-    localStorage.setItem(key, JSON.stringify(obj));
-  } catch (e) {
-    console.error(e);
-  }
-
 }
