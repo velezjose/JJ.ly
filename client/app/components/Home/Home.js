@@ -24,6 +24,7 @@ class Home extends Component {
     this.onTextboxChange = this.onTextboxChange.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
+    this.onLogout = this.onLogout.bind(this);
   }
 
   onSignUp() {
@@ -101,8 +102,28 @@ class Home extends Component {
         }
       })
       .catch(err => console.error('ERROR: ', err));
-    // Post request to back end
   }
+
+  onLogout() {
+    this.setState({
+      isLoading: true,
+    });
+
+    const { token } = this.state;
+
+    // Verify token
+    fetch(`/api/account/logout?token=${ token }`)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.setState({
+            token: '',
+            isLoading: false,
+          });
+        }
+      });
+  }
+
 
   componentDidMount() {
     const obj = getFromStorage('the_main_app');
@@ -119,13 +140,17 @@ class Home extends Component {
               token,
               isLoading: false,
             });
+          } else {
+            this.setState({
+              isLoading: false,
+            });
           }
         });
 
     } else {
       this.setState({
         isLoading: false,
-      })
+      });
     }
   }
 
@@ -185,7 +210,10 @@ class Home extends Component {
     }
 
     return (<>
-      <p>Successfully logged in!!</p>
+      <div>
+        <p>Successfully logged in!!</p>
+        <button onClick={ this.onLogout }>Log out :(</button>
+      </div>
     </>);
   }
 }
