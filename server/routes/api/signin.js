@@ -1,9 +1,22 @@
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
+const Url = require('../../models/Url');
 
 const isValidEmail = email => {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
+};
+
+const isValidUrl = url => {
+  var re = /^(ftp|http|https):\/\/[^ "]+$/;
+  return re.test(String(url).toLowerCase());;
+};
+
+const pad = n => {
+  width = 5;
+  z = '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 };
 
 module.exports = (app) => {
@@ -227,6 +240,91 @@ module.exports = (app) => {
       }
     });
 
+  });
+  
+
+  // Adds a new Url to schema
+  app.post('/api/urls', (req, res, next) => {
+    // Get the url
+    const { body } = req;
+    let { url } = body;
+
+    if (!url) {
+      return res.send({
+        success: false,
+        message: 'Error: URL must not be empty.',
+      });
+    }
+
+    url = url.toLowerCase();
+
+    if (!isValidUrl(url)) {
+      return res.send({
+        success: false,
+        message: 'Error: URL must be valid.',
+      });
+    }
+
+
+    Url.find({ url }, (err, urls) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error.',
+        });
+      }
+
+      if (urls.length !== 0) {
+        return res.send({
+          success: true,
+          message: 'Already in database.',
+        });
+      }
+
+      if (urls.length === 0) {
+        let tinyUrl = 'http://jj.ly/' + pad(Math.floor(Math.random() * 10000));
+
+        // Create new Url
+        let newUrl = new Url();
+        newUrl.tinyUrl = tinyUrl;
+        newUrl.url = url;
+
+        // save new url
+        newUrl.save((err) => {
+          if (err) {
+            return res.send({
+              success: false,
+              message: 'Error: Server error.',
+            });
+          }
+  
+          return res.send({
+            success: true,
+            message: 'New url saved.',
+          });
+        });
+      }
+
+    });
+
+  });
+
+
+  app.get('/api/urls', (req, res, next) => {
+    Url.find({}, (err, urls) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error.',
+        })
+      }
+
+      return res.send({
+        success: true,
+        message: 'Query successful.',
+        urls
+      });
+    })
   });
 
 };
