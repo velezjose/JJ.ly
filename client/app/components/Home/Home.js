@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 
 import { getFromStorage, setInStorage } from '../../utils/storage';
+import { timingSafeEqual } from 'crypto';
 
 class Home extends Component {
   constructor(props) {
@@ -19,12 +20,16 @@ class Home extends Component {
       signUpPassword: '',
       signUpFirstName: '',
       signUpLastName: '',
+      tinyUrl: '',
+      urls: [],
     };
 
     this.onTextboxChange = this.onTextboxChange.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    this.makeNewTinyUrl = this.makeNewTinyUrl.bind(this);
+    this.getUrls = this.getUrls.bind(this);
   }
 
   onSignUp() {
@@ -124,6 +129,47 @@ class Home extends Component {
       });
   }
 
+  makeNewTinyUrl() {
+    let { tinyUrl } = this.state;
+
+    fetch('/api/urls', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url: tinyUrl }),
+    }).then(res => res.json())
+    .then(json => {
+      if (json.success) {
+        let { urls } = json;
+        this.getUrls();
+      }
+    })
+  }
+
+
+  getUrls() {
+    fetch('/api/urls')
+    .then(res => res.json())
+    .then(json => {
+      console.log('GOT ALL URLS',json);
+      if (json.success) {
+        this.setState({
+          urls: json.urls,
+          tinyUrl: '',
+        });
+      }
+    });
+  }
+
+
+  onTextboxChange(e) {
+    let obj = {};
+    let id = e.target.id;
+    obj[id.toString()] = e.target.value;
+    this.setState(obj);
+  }
+
 
   componentDidMount() {
     const obj = getFromStorage('the_main_app');
@@ -154,13 +200,6 @@ class Home extends Component {
     }
   }
 
-  onTextboxChange(e) {
-    let obj = {};
-    let id = e.target.id;
-    obj[id.toString()] = e.target.value;
-    this.setState(obj);
-  }
-
   render() {
     const {
       isLoading,
@@ -173,6 +212,8 @@ class Home extends Component {
       signUpFirstName,
       signUpLastName,
       signUpError,
+      tinyUrl,
+      urls
     } = this.state;
 
     if (isLoading) {
@@ -211,7 +252,33 @@ class Home extends Component {
 
     return (<>
       <div>
-        <p>Successfully logged in!!</p>
+        <div>
+          <p>Successfully logged in!!</p>
+        </div>
+
+        <div>
+          <input type="tinyUrl" id="tinyUrl" placeholder="Enter URL to be shortened" value={ tinyUrl } onChange={ this.onTextboxChange } /><br />
+          <button onClick={ this.makeNewTinyUrl }>Make new Tiny URL</button>
+        </div>
+        <br />
+
+        <button onClick={ this.getUrls }>Get all urls</button>
+        {
+          (urls.length > 0) ? 
+            ( 
+              <div>
+                { 
+                  urls.map(record => (<>
+                    <a href={ record.url } target="_blank">{ record.tinyUrl.toString() }</a>
+                    <br />
+                  </>)) 
+                }
+              </div>
+            )
+          : null
+        }
+
+        <br />
         <button onClick={ this.onLogout }>Log out :(</button>
       </div>
     </>);
