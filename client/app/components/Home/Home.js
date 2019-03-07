@@ -152,7 +152,6 @@ class Home extends Component {
     fetch('/api/urls')
     .then(res => res.json())
     .then(json => {
-      console.log('GOT ALL URLS',json);
       if (json.success) {
         this.setState({
           urls: json.urls,
@@ -269,7 +268,7 @@ class Home extends Component {
               <div>
                 { 
                   urls.map(record => (<>
-                    <a href={ record.url } target="_blank">{ record.tinyUrl.toString() }</a>
+                    <a href={ '/' + record.hash } target="_blank">{ 'http://jj.ly/' + record.hash }</a>
                     <br />
                   </>)) 
                 }
