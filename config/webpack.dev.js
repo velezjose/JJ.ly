@@ -14,6 +14,10 @@ module.exports = merge(commonConfig, {
     ]
   },
 
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+
   output: {
     filename: 'js/[name].js',
     chunkFilename: '[id].chunk.js'

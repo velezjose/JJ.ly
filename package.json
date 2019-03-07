@@ -1,16 +1,15 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "JJ.ly",
   "version": "1.0.0",
-  "description": "MERN stack project boilerplate",
-  "author": "Eugene Cheung",
+  "description": "Url Shortening Service",
+  "author": "Jose Velez",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkon/MERN-boilerplate.git"
+    "url": "git+https://github.com/velezjose/JJ.ly"
   },
   "license": "MIT",
-  "private": true,
   "scripts": {
-    "start": "webpack -p --progress --profile --colors && node server",
+    "start": "webpack -p --progress --profile --colors && nodemon server",
     "start:dev": "nodemon server"
   },
   "engines": {
@@ -39,7 +38,7 @@
     "react-router-dom": "^4.2.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
-    "webpack": "^4.2.0",
+    "webpack": "4.19.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2",
