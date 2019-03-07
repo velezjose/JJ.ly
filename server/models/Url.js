@@ -5,7 +5,7 @@ const UrlSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  tinyUrl: {
+  hash: {
     type: String,
     default: '',
   },
