@@ -40,8 +40,8 @@ const saveNextUniqueHash = (UrlModel, urlStr, hash, res) => {
 }
 
 module.exports = app => {
-  app.get('/:hash', (req, res, next) => {
-    let hash = req.params.hash;
+  app.get('/:hash([0-9]{5})', (req, res, next) => {
+    let hash = req.params.hash.toString();
 
     if (hash === '__webpack_hmr') {
       return next();
