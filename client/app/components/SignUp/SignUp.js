@@ -108,7 +108,8 @@ class SignUp extends Component {
       signUpLastName,
       signUpEmail,
       signUpPassword,
-      token, } = this.state;
+      token,
+      justSignedUp } = this.state;
 
     if (isLoading) {
       return <LoadingSpinner />;
