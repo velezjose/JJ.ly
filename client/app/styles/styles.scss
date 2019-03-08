@@ -1,3 +1,30 @@
 @charset "UTF-8";
 
 @import 'vendor/normalize';
+
+header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+
+  a {
+    padding: 10px 40px;
+  }
+  a:link, a:visited {
+    color: rgb(69, 109, 128);
+  }
+  a:hover, a:active {
+    color: rgb(236, 120, 31);
+    text-decoration: underline;
+  }
+}
+
+section {
+  h1 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
