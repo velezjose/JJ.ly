@@ -1,22 +1,28 @@
 # JJ.ly URL Shortening Service
 
-Homepage (not logged in):
+Homepage (not logged in): <br />
 <img src="/screenshots/homepage.png" alt="Homepage of JJ.ly" width="270px" height="287px">
+<br />
 
-Sign up page:
+Sign up page: <br />
 <img src="/screenshots/sign-up-page.png" alt="Sign up page" width="270px" height="300px">
+<br />
 
-Sign in page:
+Sign in page: <br />
 <img src="/screenshots/sign-in-page.png" alt="Sign in page" width="270px" height="300px">
+<br />
 
-Dashboard:
+Dashboard: <br />
 <img src="/screenshots/dashboard-1.png" alt="Dashboard page" width="270px" height="300px">
+<br />
 
-Creating a tiny URL:
+Creating a tiny URL: <br />
 <img src="/screenshots/dashboard-2.png" alt="Creating a tiny URL" width="270px" height="300px">
+<br />
 
-All currently stored tiny URLs:
+All currently stored tiny URLs: <br />
 <img src="/screenshots/tiny-urls.png" alt="Displaying all currently URL" width="270px" height="300px">
+<br />
 
 
 ## About
