@@ -1,22 +1,22 @@
 # JJ.ly URL Shortening Service
 
 Homepage (not logged in):
-![alt text](/screenshots/homepage.png "Homepage of JJ.ly") <!-- .element width="270px" height="287px" -->
+![alt text](/screenshots/homepage.png "Homepage of JJ.ly"){:width="270px" height="287px"}
 
 Sign up page:
-![alt text](/screenshots/sign-up-page.png "Sign up page") <!-- .element width="270px" height="300px" -->
+![alt text](/screenshots/sign-up-page.png "Sign up page"){:width="270px" height="300px"}
 
 Sign in page:
-![alt text](/screenshots/sign-in-page.png "Sign in page") <!-- .element width="270px" height="300px" -->
+![alt text](/screenshots/sign-in-page.png "Sign in page"){:width="270px" height="300px"}
 
 Dashboard:
-![alt text](/screenshots/dashboard-1.png "Dashboard page") <!-- .element width="270px" height="300px" -->
+![alt text](/screenshots/dashboard-1.png "Dashboard page"){:width="270px" height="300px"}
 
 Creating a tiny URL:
-![alt text](/screenshots/dashboard-2.png "Creating a tiny URL") <!-- .element width="270px" height="300px" -->
+![alt text](/screenshots/dashboard-2.png "Creating a tiny URL"){:width="270px" height="300px"}
 
 All currently stored tiny URLs:
-![alt text](/screenshots/tiny-urls.png "Displaying all currently URL") <!-- .element width="270px" height="300px" -->
+![alt text](/screenshots/tiny-urls.png "Displaying all currently URL"){:width="270px" height="300px"}
 
 
 ## About
