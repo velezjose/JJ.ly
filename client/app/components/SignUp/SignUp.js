@@ -116,8 +116,8 @@ class SignUp extends Component {
     }
 
     if (!token) {
-      return (<>
-        <div>
+      return (
+        <div className='indent'>
             {
               (signUpError) ? (
                 <p>{signUpError}</p>
@@ -129,8 +129,8 @@ class SignUp extends Component {
             <input type="email" id="signUpEmail" placeholder="Email" value={ signUpEmail } onChange={ this.onTextboxChange } /><br />
             <input type="password" id="signUpPassword" placeholder="Password" value={ signUpPassword } onChange={ this.onTextboxChange } /><br />
             <button onClick={ this.onSignUp }>Sign up</button>
-          </div>
-        </>);
+        </div>
+      );
   
       }  
 
@@ -138,7 +138,7 @@ class SignUp extends Component {
         setTimeout(() => this.setState({ justSignedUp: false }), 1000);
   
         return (
-          <div>
+          <div className='indent'>
             <p>Successfully signed up.</p>
           </div>
         );

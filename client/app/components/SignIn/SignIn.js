@@ -102,26 +102,26 @@ class SignIn extends Component {
     const { signInError, signInEmail, signInPassword, token, justLoggedIn } = this.state;
 
     if (!token) {
-      return (<>
-        <div>
-          {
-            (signInError) ? (
-              <p>{signInError}</p>
-            ) : null
-          }
-          <p>Sign in!</p>
-          <input type='email' id='signInEmail' placeholder='Email' value={ signInEmail } onChange={ this.onTextboxChange } /><br />
-          <input type='password' id='signInPassword' placeholder='Password' value={ signInPassword } onChange={ this.onTextboxChange } /><br />
-          <button onClick={ this.onSignIn }>Sign in</button>
+      return (
+        <div className='indent'>
+            {
+              (signInError) ? (
+                <p>{signInError}</p>
+              ) : null
+            }
+            <p>Sign in!</p>
+            <input type='email' id='signInEmail' placeholder='Email' value={ signInEmail } onChange={ this.onTextboxChange } /><br />
+            <input type='password' id='signInPassword' placeholder='Password' value={ signInPassword } onChange={ this.onTextboxChange } /><br />
+            <button onClick={ this.onSignIn }>Sign in</button>
         </div>
-      </>);
+      );
     }
 
     if (justLoggedIn) {
       setTimeout(() => this.setState({ justLoggedIn: false }), 1000);
 
       return (
-        <div>
+        <div className='indent'>
           <p>Successfully logged in.</p>
         </div>
       );

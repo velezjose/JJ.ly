@@ -128,45 +128,47 @@ class Home extends Component {
 
     if (!token) {
       return (
-        <section>
+        <section className='home indent'>
           <h1>
             Welcome to JJ.ly!
           </h1>
 
           <p>
-            Shorten your URL free of charge.
+            Shorten any URL into a 5-character hash.
           </p>
         </section>
       );
     }
 
 
-    return (<>
-      <div>
-        <input type="tinyUrl" id="tinyUrl" placeholder="Enter URL to be shortened" value={ tinyUrl } onChange={ this.onTextboxChange } /><br />
-        <button onClick={ this.makeNewTinyUrl }>Make new Tiny URL</button>
-      </div>
-      <br />
+    return (
+      <section className='indent'>
+        <div>
+          <input type="tinyUrl" id="tinyUrl" placeholder="Enter URL to be shortened" value={ tinyUrl } onChange={ this.onTextboxChange } /><br />
+          <button onClick={ this.makeNewTinyUrl }>Make new Tiny URL</button>
+        </div>
+        <br />
 
-      <button onClick={ this.getUrls }>Get all urls</button>
-      {
-        (urls.length > 0) ? 
-          ( 
-            <div>
-              { 
-                urls.map(record => (<>
-                  <a href={ '/' + record.hash } target="_blank">{ 'http://jj.ly/' + record.hash }</a>
-                  <br />
-                </>)) 
-              }
-            </div>
-          )
-        : null
-      }
+        <button onClick={ this.getUrls }>Get all urls</button>
+        {
+          (urls.length > 0) ?
+            (
+              <div>
+                {
+                  urls.map(record => (<>
+                    <a href={ '/' + record.hash } target="_blank">{ 'http://jj.ly/' + record.hash }</a>
+                    <br />
+                  </>))
+                }
+              </div>
+            )
+          : null
+        }
 
-      <br />
-      <button onClick={ this.onLogout }>Log out</button>
-    </>);
+        <br />
+        <button onClick={ this.onLogout }>Log out</button>
+      </section>
+    );
   }
 }
 

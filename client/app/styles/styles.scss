@@ -19,12 +19,25 @@ header {
   }
 }
 
-section {
+.home {
   h1 {
     font-size: 16px;
   }
 
   p {
     font-size: 14px;
+  }
+}
+
+.indent {
+  padding: 15px;
+}
+
+footer {
+  p {
+    padding: 15px;
+  }
+  a {
+    color: blue;
   }
 }
