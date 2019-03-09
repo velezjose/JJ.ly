@@ -1,22 +1,22 @@
 # JJ.ly URL Shortening Service
 
 Homepage (not logged in):
-![alt text](/screenshots/homepage.png "Homepage of JJ.ly"){:width="270px" height="287px"}
+<img src="/screenshots/homepage.png" alt="Homepage of JJ.ly" width="270px" height="287px">
 
 Sign up page:
-![alt text](/screenshots/sign-up-page.png "Sign up page"){:width="270px" height="300px"}
+<img src="/screenshots/sign-up-page.png" alt="Sign up page" width="270px" height="300px">
 
 Sign in page:
-![alt text](/screenshots/sign-in-page.png "Sign in page"){:width="270px" height="300px"}
+<img src="/screenshots/sign-in-page.png" alt="Sign in page" width="270px" height="300px">
 
 Dashboard:
-![alt text](/screenshots/dashboard-1.png "Dashboard page"){:width="270px" height="300px"}
+<img src="/screenshots/dashboard-1.png" alt="Dashboard page" width="270px" height="300px">
 
 Creating a tiny URL:
-![alt text](/screenshots/dashboard-2.png "Creating a tiny URL"){:width="270px" height="300px"}
+<img src="/screenshots/dashboard-2.png" alt="Creating a tiny URL" width="270px" height="300px">
 
 All currently stored tiny URLs:
-![alt text](/screenshots/tiny-urls.png "Displaying all currently URL"){:width="270px" height="300px"}
+<img src="/screenshots/tiny-urls.png" alt="Displaying all currently URL" width="270px" height="300px">
 
 
 ## About
