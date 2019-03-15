@@ -2,42 +2,6 @@ const Url = require('../../models/Url');
 const { isValidUrl } = require('../../utils/validators.js');
 const { nextHash } = require('../../utils/nextHash.js');
 
-const saveNextUniqueHash = (UrlModel, urlStr, hash, res) => {
-
-  UrlModel.find({ hash }, (err, urls) => {
-    if (err) {
-      return res.status(500).send({
-        success: false,
-        message: 'Error: Server error.',
-      });
-    }
-  
-    if (urls.length > 0) {
-      return saveNextUniqueHash(UrlModel, urlStr, nextHash(), res);
-    }
-  
-    // Create new UrlModel
-    let newUrlModel = new UrlModel();
-    newUrlModel.hash = hash;
-    newUrlModel.url = urlStr;
-  
-    // save new url
-    newUrlModel.save((err) => {
-      if (err) {
-        return res.status(500).send({
-          success: false,
-          message: 'Error: Server error.',
-        });
-      }
-  
-      return res.status(201).send({
-        success: true,
-        message: 'New url saved.',
-      });
-    });
-  
-  })
-}
 
 module.exports = app => {
   app.get('/:hash([0-9]{5})', (req, res, next) => {
@@ -112,10 +76,29 @@ module.exports = app => {
         });
       }
 
-      if (urls.length === 0) {
-        return saveNextUniqueHash(Url, url, nextHash(), res);
-      }
+      // Get a new hash value
+      let newHash = nextHash(5);
 
+      // Create new UrlModel
+      let newUrlModel = new Url();``
+      newUrlModel.hash = newHash;
+      newUrlModel.url = url;
+    
+      // save new url
+      newUrlModel.save((err) => {
+        if (err) {
+          return res.status(500).send({
+            success: false,
+            message: 'Error: Server error.',
+          });
+        }
+    
+        return res.status(201).send({
+          success: true,
+          message: 'New url saved.',
+          hash: newHash,
+        });
+      });
     });
 
   });
