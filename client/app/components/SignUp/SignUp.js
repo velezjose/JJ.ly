@@ -131,22 +131,20 @@ class SignUp extends Component {
             <button onClick={ this.onSignUp }>Sign up</button>
         </div>
       );
-  
-      }  
+    }  
 
-      if (justSignedUp) {
-        setTimeout(() => this.setState({ justSignedUp: false }), 1000);
-  
-        return (
-          <div className='indent'>
-            <p>Successfully signed up.</p>
-          </div>
-        );
-      }
+    if (justSignedUp) {
+      setTimeout(() => this.setState({ justSignedUp: false }), 1000);
 
-      return (<Redirect to='/signin' />);
+      return (
+        <div className='indent'>
+          <p>Successfully signed up.</p>
+        </div>
+      );
     }
-      
+
+    return (<Redirect to='/signin' />);
+  } 
 
 }
 
